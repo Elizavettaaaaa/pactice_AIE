@@ -108,41 +108,46 @@ def flatten_summary_for_print(summary: DatasetSummary) -> pd.DataFrame:
         })
     return pd.DataFrame(rows)
 
-# --- НОВАЯ ЛОГИКА (ЭВРИСТИКИ) ---
+# --- ИСПРАВЛЕННАЯ ЛОГИКА ---
 
 def compute_quality_flags(summary: DatasetSummary, missing_df: pd.DataFrame, df: Optional[pd.DataFrame] = None) -> Dict[str, Any]:
     flags: Dict[str, Any] = {}
+    
+    # Стандартные проверки
     flags["too_few_rows"] = summary.n_rows < 100
     flags["too_many_columns"] = summary.n_cols > 100
-
     max_missing_share = float(missing_df["missing_share"].max()) if not missing_df.empty else 0.0
     flags["max_missing_share"] = max_missing_share
     flags["too_many_missing"] = max_missing_share > 0.5
 
-    # 1. Новая эвристика: Константные колонки (где всего 1 уникальное значение)
+    # 1. Новая эвристика: Количество константных колонок
     constant_cols = [c.name for c in summary.columns if c.unique <= 1]
-    flags["has_constant_columns"] = len(constant_cols) > 0
+    # ВАЖНО: сохраняем именно число (count), как просил преподаватель
     flags["constant_columns_count"] = len(constant_cols)
+    flags["has_constant_columns"] = len(constant_cols) > 0
 
-    # 2. Новая эвристика: Подозрительные дубликаты ID (если есть колонка с 'id' в названии, но она не уникальна)
-    # Нужен сам датафрейм для проверки, если он передан
+    # 2. Новая эвристика: Подозрительные дубликаты ID
     suspicious_ids = False
     if df is not None:
         for col in df.columns:
             if "id" in col.lower() or "user" in col.lower():
-                # Если колонка похожа на ID, но кол-во уникальных != кол-ву строк
                 if df[col].nunique() < len(df):
                     suspicious_ids = True
                     break
     flags["has_suspicious_id_duplicates"] = suspicious_ids
 
-    # Расчет скора
+    # Расчет скора с явным использованием constant_columns_count
     score = 1.0
     score -= max_missing_share
     if summary.n_rows < 100: score -= 0.2
     if summary.n_cols > 100: score -= 0.1
-    if flags["has_constant_columns"]: score -= 0.1
-    if flags["has_suspicious_id_duplicates"]: score -= 0.2
+    
+    # Штрафуем за наличие константных колонок
+    if flags["constant_columns_count"] > 0: 
+        score -= 0.15
+        
+    if flags["has_suspicious_id_duplicates"]: 
+        score -= 0.2
 
     score = max(0.0, min(1.0, score))
     flags["quality_score"] = score
