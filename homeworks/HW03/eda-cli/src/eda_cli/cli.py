@@ -54,10 +54,8 @@ def report(
     summary_df = flatten_summary_for_print(summary)
     missing_df = missing_table(df)
     corr_df = correlation_matrix(df)
-    # Используем новый параметр top_k
     top_cats = top_categories(df, top_k=top_k)
 
-    # Передаем df в compute_quality_flags для проверки ID
     quality_flags = compute_quality_flags(summary, missing_df, df=df)
 
     summary_df.to_csv(out_root / "summary.csv", index=False)
@@ -67,7 +65,6 @@ def report(
 
     md_path = out_root / "report.md"
     with md_path.open("w", encoding="utf-8") as f:
-        # Используем новый параметр title
         f.write(f"# {title}\n\n")
         f.write(f"Исходный файл: `{Path(path).name}`\n\n")
         f.write(f"Строк: **{summary.n_rows}**, столбцов: **{summary.n_cols}**\n\n")
@@ -76,7 +73,11 @@ def report(
         f.write(f"- Оценка качества: **{quality_flags['quality_score']:.2f}**\n")
         f.write(f"- Макс. доля пропусков: **{quality_flags['max_missing_share']:.2%}**\n")
         f.write(f"- Слишком мало строк: **{quality_flags['too_few_rows']}**\n")
-        f.write(f"- Есть константные колонки: **{quality_flags.get('has_constant_columns', False)}**\n")
+        
+        # --- ВОТ ТУТ МЫ ДОБАВЛЯЕМ ВЫВОД constant_columns_count ---
+        f.write(f"- Количество константных колонок: **{quality_flags.get('constant_columns_count', 0)}**\n")
+        # -----------------------------------------------------------
+        
         f.write(f"- Подозрительные дубликаты ID: **{quality_flags.get('has_suspicious_id_duplicates', False)}**\n\n")
 
         f.write("## Колонки\n\nСм. файл `summary.csv`.\n\n")
