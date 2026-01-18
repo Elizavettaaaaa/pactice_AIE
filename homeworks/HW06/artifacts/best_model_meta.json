@@ -1,9 +1,9 @@
 {
-    "best_model": "Stacking",
-    "params": "Default/No Search",
+    "best_model_name": "Stacking",
+    "params": "Composite Model / No Search",
     "metrics": {
-        "accuracy": 0.9146666666666666,
-        "f1": 0.8268710550045085,
-        "roc_auc": 0.9317821369161086
+        "accuracy": 0.8928888888888888,
+        "f1": 0.7788990825688074,
+        "roc_auc": 0.9185887060172224
     }
 }
