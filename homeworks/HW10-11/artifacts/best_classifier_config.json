@@ -1,9 +1,9 @@
 {
   "dataset": "STL10",
-  "experiment_id": "C4",
-  "architecture": "ResNet18",
-  "num_classes": 10,
+  "best_experiment_id": "C3",
+  "model_summary": "ResNet18 pretrained head-only",
   "seed": 42,
-  "epochs": 5,
-  "best_val_accuracy": 96.075
+  "batch_size": 64,
+  "optimizer": "Adam",
+  "loss": "CrossEntropyLoss"
 }
