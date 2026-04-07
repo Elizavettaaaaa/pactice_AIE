@@ -1,0 +1,9 @@
+query,expected_source,retrieved_sources,hit_at_k,rank_of_first_relevant
+What is NumPy used for?,numpy_intro,"numpy_intro,numpy_indexing,numpy_broadcasting,numpy_intro,matplotlib_intro",1,1
+How does broadcasting work in arrays?,numpy_broadcasting,"numpy_broadcasting,numpy_indexing,numpy_intro,numpy_indexing,matplotlib_plot",1,1
+How to group data in pandas?,pandas_groupby,"pandas_groupby,pandas_merge,pandas_intro,pandas_missing,pandas_intro",1,1
+How to handle missing values in pandas?,pandas_missing,"pandas_missing,pandas_merge,pandas_intro,pandas_groupby,numpy_intro",1,1
+What is a DataFrame?,pandas_intro,"pandas_intro,pandas_intro,pandas_groupby,pandas_merge,matplotlib_intro",1,1
+How to merge two tables in pandas?,pandas_merge,"pandas_merge,pandas_groupby,pandas_intro,pandas_missing,pandas_intro",1,1
+How to create plots in Python?,matplotlib_intro,"matplotlib_plot,matplotlib_intro,matplotlib_styles,numpy_intro,pandas_intro",1,2
+How to change plot style?,matplotlib_styles,"matplotlib_styles,matplotlib_plot,matplotlib_intro,pandas_intro,pandas_intro",1,1

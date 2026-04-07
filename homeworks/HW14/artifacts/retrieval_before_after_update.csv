@@ -1,0 +1,9 @@
+query,before_retrieved_sources,after_retrieved_sources,changed
+What is NumPy used for?,"numpy_intro,numpy_indexing,numpy_broadcasting,numpy_intro,matplotlib_intro","numpy_intro,numpy_performance,numpy_indexing,numpy_broadcasting,numpy_intro",1
+How does broadcasting work in arrays?,"numpy_broadcasting,numpy_indexing,numpy_intro,numpy_indexing,matplotlib_plot","numpy_broadcasting,numpy_indexing,numpy_intro,numpy_performance,numpy_indexing",1
+How to group data in pandas?,"pandas_groupby,pandas_merge,pandas_intro,pandas_missing,pandas_intro","pandas_groupby,pandas_merge,pandas_intro,pandas_missing,pandas_intro",0
+How to handle missing values in pandas?,"pandas_missing,pandas_merge,pandas_intro,pandas_groupby,numpy_intro","pandas_missing,pandas_merge,pandas_intro,pandas_groupby,numpy_intro",0
+What is a DataFrame?,"pandas_intro,pandas_intro,pandas_groupby,pandas_merge,matplotlib_intro","pandas_intro,pandas_intro,pandas_groupby,pandas_merge,matplotlib_intro",0
+How to merge two tables in pandas?,"pandas_merge,pandas_groupby,pandas_intro,pandas_missing,pandas_intro","pandas_merge,pandas_groupby,pandas_intro,pandas_missing,pandas_intro",0
+How to create plots in Python?,"matplotlib_plot,matplotlib_intro,matplotlib_styles,numpy_intro,pandas_intro","matplotlib_plot,matplotlib_intro,matplotlib_subplots,matplotlib_styles,matplotlib_legends",1
+How to change plot style?,"matplotlib_styles,matplotlib_plot,matplotlib_intro,pandas_intro,pandas_intro","matplotlib_styles,matplotlib_legends,matplotlib_subplots,matplotlib_plot,matplotlib_intro",1
