@@ -1,0 +1,39 @@
+# Виртуальное окружение
+.venv
+venv
+env
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.so
+
+# Git
+.git
+.gitignore
+
+# Документация
+*.md
+!README.md
+
+# Ноутбуки и данные
+notebooks/
+data/
+*.ipynb
+
+# Тесты
+tests/
+.pytest_cache
+
+# Логи и временные файлы
+*.log
+.DS_Store
+catboost_info/
+
+# IDE
+.vscode
+.idea
+
+# Секреты
+.env

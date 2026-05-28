@@ -55,3 +55,6 @@ logs/
 *.tmp
 *.bak
 *.old
+
+# CatBoost
+catboost_info/

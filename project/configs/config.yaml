@@ -1,0 +1,100 @@
+# Конфигурация проекта прогнозирования оттока клиентов
+
+# Настройки данных
+data:
+  raw_path: "./data/raw/telco_churn.csv"
+  processed_path: "./data/processed/telco_cleaned.csv"
+  test_size: 0.2
+  random_state: 42
+  target_col: "Churn"
+
+# Категориальные признаки для One-Hot Encoding
+categorical_features:
+  - gender
+  - Partner
+  - Dependents
+  - PhoneService
+  - MultipleLines
+  - InternetService
+  - OnlineSecurity
+  - OnlineBackup
+  - DeviceProtection
+  - TechSupport
+  - StreamingTV
+  - StreamingMovies
+  - Contract
+  - PaperlessBilling
+  - PaymentMethod
+
+# Числовые признаки для масштабирования
+numeric_features:
+  - tenure
+  - MonthlyCharges
+  - TotalCharges
+  - SeniorCitizen
+
+# Настройки моделей
+models:
+  logistic_regression:
+    C: 1.0
+    max_iter: 1000
+    random_state: 42
+    class_weight: "balanced"
+  
+  random_forest:
+    n_estimators: 100
+    max_depth: 10
+    random_state: 42
+    class_weight: "balanced"
+  
+  xgboost:
+    n_estimators: 200
+    max_depth: 4
+    learning_rate: 0.05
+    random_state: 42
+    scale_pos_weight: null
+  
+  catboost:
+    iterations: 200
+    depth: 6
+    learning_rate: 0.05
+    random_state: 42
+    auto_class_weights: "Balanced"
+
+# Настройки гиперпараметров для GridSearch
+grid_search:
+  xgboost:
+    n_estimators: [100, 150, 200]
+    max_depth: [4, 6, 8]
+    learning_rate: [0.05, 0.1, 0.2]
+  
+  catboost:
+    iterations: [100, 150, 200]
+    depth: [4, 6, 8]
+    learning_rate: [0.05, 0.1]
+
+# Настройки API сервиса
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+  title: "Customer Churn Prediction API"
+  version: "1.0.0"
+
+# Настройки порога классификации
+threshold:
+  default: 0.5
+  business_cost:
+    fn_cost: 100
+    fp_cost: 10
+
+# Настройки логирования
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Настройки Docker
+docker:
+  image_name: "churn-prediction-api"
+  container_name: "churn-api"
+  port: 8000

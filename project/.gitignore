@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Данные (сами csv не коммитим)
+data/raw/*.csv
+!data/raw/.gitkeep
+data/processed/*.csv
+!data/processed/.gitkeep
+
+# Модели (большие файлы)
+*.pkl
+*.joblib
+models/*.pkl
+!models/.gitkeep
+
+# Секреты
+.env
+*.key
+*.pem
+*.crt
+
+# Логи
+*.log
+logs/
+catboost_info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Тесты и временные файлы
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
