@@ -192,6 +192,7 @@ curl -X POST http://localhost:8000/predict_batch \
 
 ## Структура проекта
 
+```
 project/
 ├── README.md                 # Инструкция по запуску
 ├── report.md                 # Отчёт по проекту
@@ -231,3 +232,4 @@ project/
 └── docker/
     ├── Dockerfile            # Docker образ
     └── docker-compose.yml    # Docker Compose
+```

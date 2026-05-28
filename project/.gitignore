@@ -11,18 +11,19 @@ pip-delete-this-directory.txt
 
 # Jupyter Notebook
 .ipynb_checkpoints/
-*.ipynb
 
-# Данные (сами csv не коммитим)
+# Данные
 data/raw/*.csv
 !data/raw/.gitkeep
-data/processed/*.csv
-!data/processed/.gitkeep
 
-# Модели (большие файлы)
+# Модели
 *.pkl
 *.joblib
-models/*.pkl
+# Нужные модели
+!models/churn_model.pkl
+!models/scaler.pkl
+!models/columns_order.pkl
+!models/best_threshold.pkl
 !models/.gitkeep
 
 # Секреты
@@ -46,6 +47,3 @@ catboost_info/
 .pytest_cache/
 .coverage
 htmlcov/
-
-# Jupyter
-.ipynb_checkpoints/
